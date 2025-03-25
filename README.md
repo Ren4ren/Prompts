@@ -28,6 +28,14 @@
 
 就像「螢幕陷阱」一書裡面提到的，讀紙本書不像閱讀智慧螢幕一樣流暢，這種需要花時間、花精力克服障礙的閱讀，才能讓你停頓，進而讓腦子對資訊印象更深。 我也突然想到，有一陣子流行過一個高橋流的簡報風格。我因為這些實驗和資訊思索。我一直都是從事視覺設計相關工作，工作內容都是要製作出美麗吸睛的動畫。可有時候犧牲美感和流暢體驗，反而才能達到設計的目的。
 
+---
+分別使用Claude, Deepseek等llm產生代碼製作出來的帶動畫頁面
+
+<img src="assets/ocean.gif.png" alt="深海" width="500" />
+http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/ocean_claude
+<img src="assets/cosmic.gif" alt="Cosmic" width="500" />
+http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/cosmic_claude.html
+<img src="assets/natural.gif" alt="natural" width="500" />
 
 ---
 僅供參考的prompt，可能會因為模型不同，或是其他原因導致結果有點不同。目前推薦LLM: Claude (可預覽) > Grok, ChatGPT, Deepseek  (可預覽) 
