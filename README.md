@@ -30,15 +30,12 @@
 
 ---
 分別使用Claude, Deepseek等llm產生代碼製作出來的帶動畫頁面
+
+<img src="assets/ocean.gif.png" alt="深海" width="500" />
 http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/ocean_claude
-http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/cat_claude
-http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/musicfun_claude
-http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/space_DS
+<img src="assets/cosmic.gif" alt="Cosmic" width="500" />
 http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/cosmic_claude.html
-
-
-
-
+<img src="assets/natural.gif" alt="natural" width="500" />
 
 ---
 僅供參考的prompt，可能會因為模型不同，或是其他原因導致結果有點不同。目前推薦LLM: Claude (可預覽) > Grok, ChatGPT, Deepseek  (可預覽) 
