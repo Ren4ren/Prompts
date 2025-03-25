@@ -31,7 +31,7 @@
 ---
 分別使用Claude, Deepseek等llm產生代碼製作出來的帶動畫頁面
 
-<img src="assets/ocean.gif.png" alt="深海" width="500" />
+<img src="assets/ocean.gif" alt="深海" width="500" />
 http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/ocean_claude
 <img src="assets/cosmic.gif" alt="Cosmic" width="500" />
 http://htmlpreview.github.io/?https://github.com/Ren4ren/Prompts/blob/main/cosmic_claude.html
