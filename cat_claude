@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 2.2;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative; /* 為絕對定位的爪印提供參考點 */
+        }
+        
+        /* 使段落中的文字能被貓爪覆蓋但仍然清晰可見 */
+        p .text {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .emoji {
+            display: inline-block;
+            font-size: 4.5em; /* 三倍大小 */
+            vertical-align: middle;
+            margin: 0 8px;
+            line-height: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cat {
+            animation: extreme-bounce 1.5s ease infinite alternate;
+            transform-origin: bottom;
+        }
+        
+        @keyframes extreme-bounce {
+            0% { transform: translateY(0); }
+            20% { transform: translateY(-10px); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-50px); }
+            80% { transform: translateY(-30px); }
+            90% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .night {
+            animation: extreme-twinkle 2s ease infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.7));
+        }
+        
+        @keyframes extreme-twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .sleep {
+            animation: extreme-sleep 3s ease-in-out infinite;
+        }
+        
+        @keyframes extreme-sleep {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(0.8) rotate(-5deg); }
+            75% { transform: scale(1.2) rotate(5deg); }
+        }
+        
+        .eye {
+            animation: extreme-blink 2s ease-in-out infinite;
+        }
+        
+        @keyframes extreme-blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1) rotateX(180deg); }
+        }
+        
+        /* 爪印跨越文字的動畫 */
+        .paw-overlay {
+            position: absolute;
+            font-size: 4.5em;
+            z-index: 5; /* 高於文字但低於其他emoji */
+            opacity: 0.85; /* 稍微透明以便看到下方的文字 */
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); /* 白色陰影幫助在文字上清晰顯示 */
+        }
+        
+        /* 第三段落中的多個爪印 */
+        .paw1 { 
+            animation: paw-move1 8s linear infinite; 
+            animation-delay: 0s;
+        }
+        
+        .paw2 { 
+            animation: paw-move2 10s linear infinite; 
+            animation-delay: 2s;
+        }
+        
+        .paw3 { 
+            animation: paw-move3 7s linear infinite; 
+            animation-delay: 1s;
+        }
+        
+        .paw4 { 
+            animation: paw-move4 9s linear infinite; 
+            animation-delay: 3.5s;
+        }
+        
+        .paw5 { 
+            animation: paw-move5 11s linear infinite; 
+            animation-delay: 5s;
+        }
+        
+        @keyframes paw-move1 {
+            0% { 
+                left: -5%; 
+                top: 10%; 
+                transform: rotate(-20deg);
+            }
+            20% { 
+                left: 20%; 
+                top: 30%; 
+                transform: rotate(10deg);
+            }
+            40% { 
+                left: 40%; 
+                top: 15%; 
+                transform: rotate(-15deg);
+            }
+            60% { 
+                left: 60%; 
+                top: 50%; 
+                transform: rotate(20deg);
+            }
+            80% { 
+                left: 80%; 
+                top: 25%; 
+                transform: rotate(-10deg);
+            }
+            100% { 
+                left: 105%; 
+                top: 40%; 
+                transform: rotate(15deg);
+            }
+        }
+        
+        @keyframes paw-move2 {
+            0% { 
+                left: -5%; 
+                top: 50%; 
+                transform: rotate(15deg) scale(0.9);
+            }
+            30% { 
+                left: 30%; 
+                top: 15%; 
+                transform: rotate(-10deg) scale(1.1);
+            }
+            60% { 
+                left: 65%; 
+                top: 60%; 
+                transform: rotate(20deg) scale(0.8);
+            }
+            100% { 
+                left: 105%; 
+                top: 20%; 
+                transform: rotate(-15deg) scale(1);
+            }
+        }
+        
+        @keyframes paw-move3 {
+            0% { 
+                left: -5%; 
+                top: 70%; 
+                transform: rotate(-10deg) scale(1.1);
+            }
+            25% { 
+                left: 25%; 
+                top: 40%; 
+                transform: rotate(15deg) scale(0.9);
+            }
+            50% { 
+                left: 50%; 
+                top: 80%; 
+                transform: rotate(-20deg) scale(1.2);
+            }
+            75% { 
+                left: 75%; 
+                top: 30%; 
+                transform: rotate(10deg) scale(0.8);
+            }
+            100% { 
+                left: 105%; 
+                top: 60%; 
+                transform: rotate(-5deg) scale(1);
+            }
+        }
+        
+        @keyframes paw-move4 {
+            0% { 
+                left: 105%; 
+                top: 80%; 
+                transform: rotate(10deg) scale(0.9);
+            }
+            20% { 
+                left: 80%; 
+                top: 50%; 
+                transform: rotate(-15deg) scale(1.1);
+            }
+            40% { 
+                left: 60%; 
+                top: 20%; 
+                transform: rotate(5deg) scale(0.8);
+            }
+            60% { 
+                left: 40%; 
+                top: 70%; 
+                transform: rotate(-20deg) scale(1.2);
+            }
+            80% { 
+                left: 20%; 
+                top: 40%; 
+                transform: rotate(15deg) scale(0.9);
+            }
+            100% { 
+                left: -5%; 
+                top: 10%; 
+                transform: rotate(-10deg) scale(1);
+            }
+        }
+        
+        @keyframes paw-move5 {
+            0% { 
+                left: 105%; 
+                top: 30%; 
+                transform: rotate(-15deg) scale(1.1);
+            }
+            33% { 
+                left: 65%; 
+                top: 10%; 
+                transform: rotate(20deg) scale(0.8);
+            }
+            66% { 
+                left: 30%; 
+                top: 60%; 
+                transform: rotate(-10deg) scale(1.2);
+            }
+            100% { 
+                left: -5%; 
+                top: 40%; 
+                transform: rotate(15deg) scale(0.9);
+            }
+        }
+        
+        .blanket {
+            animation: extreme-cover 3s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes extreme-cover {
+            0% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(10deg); }
+            66% { transform: translateY(-5px) rotate(-10deg); }
+            100% { transform: translateY(-20px) rotate(15deg); }
+        }
+        
+        .anger {
+            animation: extreme-anger 0.3s ease-in-out infinite;
+        }
+        
+        @keyframes extreme-anger {
+            0%, 100% { transform: translateX(0) scale(1); }
+            25% { transform: translateX(-10px) scale(1.1); }
+            50% { transform: translateX(0) scale(1.2); }
+            75% { transform: translateX(10px) scale(1.1); }
+        }
+        
+        .happy {
+            animation: extreme-pulse 1.5s ease infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        }
+        
+        @keyframes extreme-pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(10deg); }
+            50% { transform: scale(1.1) rotate(0deg); }
+            75% { transform: scale(1.3) rotate(-10deg); }
+        }
+        
+        .bed {
+            animation: extreme-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes extreme-float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+        
+        .hide {
+            animation: extreme-peek 3s ease-in-out infinite;
+        }
+        
+        @keyframes extreme-peek {
+            0%, 20%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-15px); }
+            15% { transform: translateX(15px); }
+            25% { transform: translateX(-15px); }
+            30% { transform: translateX(15px); }
+            35% { transform: translateX(-15px); }
+            40% { transform: translateX(0); }
+        }
+        
+        /* 添加空間給emoji */
+        .emoji-container {
+            display: inline-block;
+            vertical-align: middle;
+            height: 4.5em;
+            line-height: 1;
+            margin: 0 10px;
+            padding: 0 5px;
+        }
+        
+        /* 調整行間距 */
+        .text-wrapper {
+            line-height: 2.5;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <h1>貓咪夜訪記</h1>
+    
+    <p class="text-wrapper">
+        <span class="text">附近亂跑的小白</span><span class="emoji-container"><span class="emoji cat">🐱</span></span><span class="text">，已經連續好幾天每天</span><span class="emoji-container"><span class="emoji night">🌙</span></span><span class="text">上偷偷來我</span><span class="emoji-container"><span class="emoji bed">🛏️</span></span><span class="text">過夜了，待了好久。但昨天</span><span class="emoji-container"><span class="emoji night">🌙</span></span><span class="text">上我們的關係更進一步了。我知道自己的</span><span class="emoji-container"><span class="emoji sleep">😴</span></span><span class="text">相不好，半夜會翻身好幾次，所以雖然我很喜歡寵物，每次跟牠們一起</span><span class="emoji-container"><span class="emoji sleep">😴</span></span><span class="text">覺，早上起來都會發現牠們</span><span class="emoji-container"><span class="emoji hide">👀</span></span><span class="text">到旁邊去了。</span>
+    </p>
+    
+    <p class="text-wrapper">
+        <span class="text">但今天這隻小</span><span class="emoji-container"><span class="emoji cat">🐱</span></span><span class="text">在我半夢半醒的時候，爬到我的腋下，躺在我的手臂上跟我一起</span><span class="emoji-container"><span class="emoji sleep">😴</span></span><span class="text">覺，我就覺得</span><span class="emoji-container"><span class="emoji happy">😊</span></span><span class="text">的。</span>
+    </p>
+    
+    <p class="text-wrapper">
+        <!-- 添加多個跨越文字的爪印 -->
+        <span class="paw-overlay paw1">🐾</span>
+        <span class="paw-overlay paw2">🐾</span>
+        <span class="paw-overlay paw3">🐾</span>
+        <span class="paw-overlay paw4">🐾</span>
+        <span class="paw-overlay paw5">🐾</span>
+        
+        <span class="text">只是這時候轉折來了，可能因為我們的關係又更進一步了吧，牠開始學會新的技術，毫不客氣地直接用前爪又踩又戳我的頭。我忍耐著盡量把頭抬高，轉過頭去，但後來牠直接踩在我閉著的</span><span class="emoji-container"><span class="emoji eye">👁️</span></span><span class="text">皮上。我甚至可以感受到牠尖尖的爪子，我只好轉過頭，結果牠又踩在我後腦勺的頭皮上。最後我不得不用</span><span class="emoji-container"><span class="emoji blanket">🛌</span></span><span class="text">蓋住自己，不然我就得把牠</span><span class="emoji-container"><span class="emoji anger">😠</span></span><span class="text">出去了。</span>
+    </p>
+</body>
+</html>

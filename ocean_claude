@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深海奇觀 - 極端視覺效果演示</title>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        @keyframes twist {
+            0% { transform: skew(0deg, 0deg); }
+            25% { transform: skew(5deg, 10deg); }
+            50% { transform: skew(0deg, 0deg); }
+            75% { transform: skew(-5deg, -10deg); }
+            100% { transform: skew(0deg, 0deg); }
+        }
+
+        @keyframes vibrate {
+            0%, 100% { transform: translate(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-2px); }
+            20%, 40%, 60%, 80% { transform: translate(2px); }
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 0 #ff00ea, -2px 0 #00ffff;
+                color: #ffffff;
+            }
+            25% {
+                text-shadow: -2px 0 #ff00ea, 2px 0 #00ffff;
+                color: #ffff00;
+            }
+            50% {
+                text-shadow: 2px 0 #ff00ea, -2px 0 #00ffff;
+                color: #00ffff;
+            }
+            75% {
+                text-shadow: -2px 0 #00ffff, 2px 0 #ff00ea;
+                color: #ff00ea;
+            }
+            100% {
+                text-shadow: 2px 0 #ff00ea, -2px 0 #00ffff;
+                color: #ffffff;
+            }
+        }
+
+        @keyframes moveRight {
+            from { left: -100px; }
+            to { left: calc(100% + 100px); }
+        }
+
+        @keyframes moveLeft {
+            from { right: -100px; }
+            to { right: calc(100% + 100px); }
+        }
+
+        @keyframes moveDiagonal1 {
+            0% { left: -100px; top: -100px; }
+            100% { left: calc(100% + 100px); top: calc(100% + 100px); }
+        }
+
+        @keyframes moveDiagonal2 {
+            0% { right: -100px; top: -100px; }
+            100% { right: calc(100% + 100px); top: calc(100% + 100px); }
+        }
+
+        @keyframes moveDiagonal3 {
+            0% { left: -100px; bottom: -100px; }
+            100% { left: calc(100% + 100px); bottom: calc(100% + 100px); }
+        }
+
+        @keyframes moveDiagonal4 {
+            0% { right: -100px; bottom: -100px; }
+            100% { right: calc(100% + 100px); bottom: calc(100% + 100px); }
+        }
+
+        @keyframes moveZigZag {
+            0% { left: 0; top: 0; }
+            25% { left: 25%; top: 15%; }
+            50% { left: 50%; top: 5%; }
+            75% { left: 75%; top: 20%; }
+            100% { left: 100%; top: 0; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #001e3c, #000428);
+            color: #e0f7ff;
+            overflow-x: hidden;
+            perspective: 1000px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            transform-style: preserve-3d;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(50px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            animation: glitch 5s infinite alternate;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+            transform: perspective(500px) rotateX(10deg);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: pulse 4s infinite;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            position: relative;
+        }
+
+        .section {
+            background: rgba(0, 30, 60, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateZ(20px) scale(1.02);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00eeff;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00eeff, transparent);
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight {
+            color: #ffff00;
+            font-weight: bold;
+            display: inline-block;
+            animation: pulse 3s infinite;
+        }
+
+        .twisted {
+            display: inline-block;
+            animation: twist 6s ease-in-out infinite;
+            color: #ff9900;
+            font-style: italic;
+        }
+
+        .vibrating {
+            display: inline-block;
+            animation: vibrate 0.2s linear infinite;
+            color: #ff00ff;
+        }
+
+        .jumping {
+            display: inline-block;
+            animation: jump 1s ease infinite;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .spinning {
+            display: inline-block;
+            animation: spin 3s linear infinite;
+            color: #ff6600;
+        }
+
+        .glitching {
+            display: inline-block;
+            animation: glitch 2s infinite alternate;
+            color: #ffffff;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 4rem;
+            z-index: 3;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+        }
+
+        .emoji-1 {
+            animation: moveRight 15s linear infinite, float 8s ease-in-out infinite;
+            top: 20%;
+        }
+
+        .emoji-2 {
+            animation: moveLeft 20s linear infinite, pulse 5s infinite;
+            top: 40%;
+        }
+
+        .emoji-3 {
+            animation: moveDiagonal1 25s linear infinite, spin 10s linear infinite;
+            font-size: 5rem;
+        }
+
+        .emoji-4 {
+            animation: moveDiagonal2 18s linear infinite, float 6s ease-in-out infinite;
+            font-size: 3.5rem;
+        }
+
+        .emoji-5 {
+            animation: moveDiagonal3 22s linear infinite, pulse 7s infinite;
+            font-size: 4.5rem;
+        }
+
+        .emoji-6 {
+            animation: moveDiagonal4 30s linear infinite, spin 8s linear infinite;
+            font-size: 3rem;
+        }
+
+        .emoji-7 {
+            animation: moveZigZag 35s linear infinite, jump 2s infinite;
+            font-size: 4.2rem;
+            position: fixed;
+            z-index: 100;
+        }
+
+        .background-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.1);
+            filter: blur(10px);
+        }
+
+        .bubble-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -150px;
+            animation: float 30s ease-in-out infinite;
+        }
+
+        .bubble-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: -100px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .bubble-3 {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            left: 30%;
+            animation: float 35s ease-in-out infinite;
+        }
+
+        .three-d {
+            transform-style: preserve-3d;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .three-d:hover {
+            transform: translateZ(30px) rotateY(10deg);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .floating-emoji {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>深海奇觀</h1>
+            <p class="subtitle">探索海洋深處的神秘世界</p>
+        </header>
+
+        <div class="content">
+            <section class="section">
+                <h2>神秘的深海世界</h2>
+                <p>
+                    深海是地球上最後一塊尚未完全探索的領域，覆蓋了超過<span class="highlight">71%</span>的地球表面。
+                    在這片黑暗的水域中，存在著令人難以置信的生物多樣性，
+                    其中包含了<span class="twisted">數千種奇特而美麗</span>的生物，
+                    它們已經適應了極端的環境條件。
+                </p>
+                <p>
+                    深海生物通常具有<span class="vibrating">獨特的生理特徵</span>，
+                    使它們能夠在高壓、低溫和缺乏陽光的環境中生存。
+                    一些物種已經發展出<span class="jumping">生物發光</span>的能力，
+                    通過產生自己的光來在黑暗中導航、獵食或吸引配偶。
+                </p>
+                <p>
+                    科學家估計深海中可能有<span class="spinning">數百萬</span>種尚未被發現的物種，
+                    這使得每次深海探索都充滿了<span class="glitching">驚奇和未知</span>。
+                    隨著技術的進步，我們正在逐漸揭開這個神秘世界的面紗。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>深海的極端環境</h2>
+                <p>
+                    深海環境是地球上最極端的生態系統之一，在那裡，
+                    <span class="highlight">水壓可以達到</span>表面的一千倍以上。
+                    在海洋最深處的馬里亞納海溝，壓力超過了
+                    <span class="twisted">每平方英寸八噸</span>，
+                    足以將人類肺部壓縮到比罐頭還小的尺寸。
+                </p>
+                <p>
+                    溫度也是一個極端因素，大多數深海地區的溫度在
+                    <span class="vibrating">攝氏2至4度</span>之間，
+                    除了深海熱泉區域，那裡的溫度可能高達
+                    <span class="jumping">攝氏400度</span>以上！
+                    這些熱泉周圍形成了獨特的生態系統，
+                    支持著不依賴陽光的生命形式。
+                </p>
+                <p>
+                    缺乏陽光意味著大多數深海生物依賴於
+                    <span class="spinning">海洋表面下沉的有機物</span>作為食物來源，
+                    或者發展出了獨特的捕食策略。
+                    這裡的生物適應了<span class="glitching">永恆的黑暗</span>，
+                    進化出了高度敏感的感官系統來導航和獵食。
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>深海的奇特生物</h2>
+                <p>
+                    深海中的生物形態多樣且往往<span class="highlight">匪夷所思</span>。
+                    例如，<span class="twisted">深海鮟鱇魚</span>擁有巨大的嘴巴和一個發光的誘餌，
+                    用來引誘獵物靠近。雌性比雄性大得多，
+                    雄性通常會永久性地附著在雌性身上，變成一個簡單的繁殖器官。
+                </p>
+                <p>
+                    <span class="vibrating">巨型魷魚</span>是深海中最神秘的生物之一，
+                    眼睛直徑可達<span class="jumping">25厘米</span>，
+                    這是所有動物中最大的眼睛。
+                    它們可能長達13米，是海底最令人畏懼的掠食者之一。
+                </p>
+                <p>
+                    還有<span class="spinning">玻璃鰻</span>，它的身體幾乎完全透明，
+                    以及<span class="glitching">耙齒鯊</span>，擁有300多顆針狀尖銳的牙齒，
+                    專門用來捕捉和固定柔軟的獵物，如魷魚和章魚。
+                    這些生物展示了生命適應極端環境的驚人能力。
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <!-- 浮動表情符號 -->
+    <div class="floating-emoji emoji-1">🐙</div>
+    <div class="floating-emoji emoji-2">🦑</div>
+    <div class="floating-emoji emoji-3">🐠</div>
+    <div class="floating-emoji emoji-4">🐬</div>
+    <div class="floating-emoji emoji-5">🐋</div>
+    <div class="floating-emoji emoji-6">🦈</div>
+    <div class="floating-emoji emoji-7">🐡</div>
+
+    <!-- 背景氣泡 -->
+    <div class="background-bubble bubble-1"></div>
+    <div class="background-bubble bubble-2"></div>
+    <div class="background-bubble bubble-3"></div>
+</body>
+</html>
